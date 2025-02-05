@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Screen</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Poppins, sans-serif;
+      color: #000;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .welcome-container {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1600px;
+      padding: 20px;
+      border-radius: 32px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .logo {
+      aspect-ratio: 2.57;
+      object-fit: contain;
+      object-position: center;
+      width: 120px;
+      border-radius: 32px;
+      margin: 20px 0;
+    }
+
+    .hero-image {
+      aspect-ratio: 1.29;
+      object-fit: contain;
+      object-position: center;
+      width: 100%;
+      max-width: 800px;
+      margin: 20px 0;
+    }
+
+    .welcome-heading {
+      margin-top: 20px;
+      font-size: 36px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .welcome-description {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #000;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      border-radius: 10px;
+      background-color: rgb(23, 31, 29);
+      margin-top: 30px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 15px 30px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .bottom-indicator {
+      border-radius: 100px;
+      background-color: #000;
+      margin-top: 30px;
+      width: 160px;
+      height: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .welcome-container {
+        padding: 40px;
+      }
+
+      .welcome-heading {
+        font-size: 48px;
+      }
+
+      .welcome-description {
+        font-size: 20px;
+      }
+
+      .cta-button {
+        font-size: 20px;
+      }
+
+      .bottom-indicator {
+        width: 200px;
+        height: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <img
+      loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b9171743503959bdd1f38c593ea666fae924b4844a79f3e3454d5fc84f4f82e3?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529"
+      class="logo"
+      alt="BreatheEasy logo"
+    />
+    <img
+      loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/871d2c60b145d2a62881d787ea387d1d2e47b84d75a9eb8fc9e6698d83f352ba?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529"
+      class="hero-image"
+      alt="Air quality monitoring illustration"
+    />
+    <h1 class="welcome-heading">Welcome to BreatheEasy</h1>
+    <p class="welcome-description">
+      BreatheEasy is here to help you stay informed about the air quality in your
+      area.
+    </p>
+    <button class="cta-button" tabindex="0">Get Started</button>
+    <div class="bottom-indicator" aria-hidden="true"></div>
+  </div>
+</body>
+</html>

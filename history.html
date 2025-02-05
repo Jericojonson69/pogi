@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Air Quality Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      text-align: center;
+    }
+    .container {
+      max-width: 480px;
+      margin: auto;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #acffb6;
+    }
+    .menu-icon {
+      font-size: 36px;
+      cursor: pointer;
+    }
+    .profile-pic {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    /* I-wrap ang matter-indicator sa isang container na naka-flex */
+    .matter-indicator-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .matter-indicator {
+      background-color: #acffb6;
+      padding: 10px 40px;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+    }
+    .matter-indicator .menu-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .report-section {
+      margin-top: 58px;
+      padding: 15px;
+      background-color: rgba(219, 255, 223, 0.5);
+      border-radius: 10px;
+      position: relative;
+    }
+    .report-section h3 {
+      margin: 0;
+      text-align: center;
+      font-size: 18px;
+    }
+    .hourly-chart {
+      margin-top: 200px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px;
+      background: white;
+    }
+    .hourly-chart div {
+      flex: 0 0 auto;
+      text-align: center;
+      font-size: 16px;
+      padding: 10px 15px;
+      min-width: 80px;
+      background: #e0ffe5;
+      border-radius: 10px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .table th,
+    .table td {
+      padding: 10px;
+      text-align: center;
+    }
+    .table th {
+      background-color: #acffb6;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 20px;
+      background: white;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      width: 200px;
+      z-index: 100;
+    }
+    .dropdown-item {
+      display: block;
+      padding: 12px;
+      font-size: 18px;
+      color: #333;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="menu-icon" id="menuIcon">&#9776;</div>
+      <div class="title">Home</div>
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/93993e8d041ced458e42220e88cf5374974a2e0c64f15e62f2d366935b57da96?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529"
+        alt="User profile"
+        class="profile-pic"
+      />
+    </div>
+    
+    <!-- Matter Indicator (Naka-align sa kanan gamit ang Flexbox) -->
+    <div class="matter-indicator-wrapper">
+      <div class="matter-indicator" id="matterIndicator">
+        Particulate Matter
+        <div class="menu-icon" id="matterIcon">&#9662;</div>
+      </div>
+    </div>
+    
+    <div class="dropdown-menu" id="matterDropdown">
+      <a href="#" class="dropdown-item">Particulate Matter</a>
+      <a href="#" class="dropdown-item">Temperature</a>
+      <a href="#" class="dropdown-item">Humidity</a>
+    </div>
+
+    <!-- Hourly Report Section -->
+    <div class="report-section">
+      <h3>Hourly Report</h3>
+      <div class="hourly-chart">
+        <div>1 AM</div>
+        <div>2 AM</div>
+        <div>3 AM</div>
+        <div>4 AM</div>
+        <div>5 AM</div>
+        <div>6 AM</div>
+        <div>7 AM</div>
+        <div>8 AM</div>
+        <div>9 AM</div>
+        <div>10 AM</div>
+        <div>11 AM</div>
+      </div>
+    </div>
+
+    <!-- Weekly Report Section -->
+    <div class="report-section">
+      <h3>Weekly Report</h3>
+      <table class="table" border="1">
+        <tr>
+          <th>Day</th>
+          <th>AQI</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>Sunday</td>
+          <td>22</td>
+          <td>Moderate</td>
+        </tr>
+        <tr>
+          <td>Monday</td>
+          <td>10</td>
+          <td>Good</td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td>15</td>
+          <td>Good</td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td>15</td>
+          <td>Good</td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td>13</td>
+          <td>Good</td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td>15</td>
+          <td>Good</td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>23</td>
+          <td>Moderate</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Dropdown menu para sa main menu icon
+    const menuIcon = document.getElementById('menuIcon');
+    const dropdownMenu = document.createElement('div');
+    dropdownMenu.className = 'dropdown-menu';
+    dropdownMenu.innerHTML = `
+      <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+      <a href="recent.html" class="dropdown-item">AQI Recent Activity</a>
+      <a href="history.html" class="dropdown-item">History</a>
+      <a href="notification.html" class="dropdown-item">Notification</a>
+      <a href="settings.html" class="dropdown-item">Settings</a>
+    `;
+    document.body.appendChild(dropdownMenu);
+
+    menuIcon.addEventListener('click', (e) => {
+      // Isara ang matter dropdown kapag binuksan ang main menu
+      document.getElementById('matterDropdown').style.display = 'none';
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      e.stopPropagation();
+    });
+
+    dropdownMenu.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', () => {
+        dropdownMenu.style.display = 'none';
+      });
+    });
+
+    // Dropdown menu para sa matter indicator
+    const matterIndicator = document.getElementById('matterIndicator');
+    const matterDropdown = document.getElementById('matterDropdown');
+
+    matterIndicator.addEventListener('click', (e) => {
+      // Isara ang main menu dropdown kapag binuksan ang matter dropdown
+      dropdownMenu.style.display = 'none';
+      matterDropdown.style.display = matterDropdown.style.display === 'block' ? 'none' : 'block';
+      e.stopPropagation();
+    });
+
+    matterDropdown.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', () => {
+        matterDropdown.style.display = 'none';
+      });
+    });
+
+    // Isara ang mga dropdown kapag nag-click sa labas ng mga ito
+    document.addEventListener('click', (e) => {
+      if (!menuIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.style.display = 'none';
+      }
+      if (!matterIndicator.contains(e.target) && !matterDropdown.contains(e.target)) {
+        matterDropdown.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .aqi-activity-container {
+      background-color: #fff;
+      display: flex;
+      max-width: 480px;
+      width: 100%;
+      flex-direction: column;
+      overflow: hidden;
+      color: #000;
+      text-align: center;
+      margin: 0 auto;
+      padding: 28px 0 188px;
+    }
+
+    .header-wrapper {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      padding: 0 13px;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      white-space: nowrap;
+      letter-spacing: -0.4px;
+      justify-content: space-between;
+      font: 600 20px/1.4 Inter, sans-serif;
+    }
+
+    .back-icon {
+      aspect-ratio: 0.95;
+      object-fit: contain;
+      object-position: center;
+      width: 36px;
+      align-self: stretch;
+    }
+
+    .page-title {
+      align-self: stretch;
+      margin: auto 0;
+    }
+
+    .profile-image {
+      aspect-ratio: 1;
+      object-fit: contain;
+      object-position: center;
+      width: 24px;
+      border-radius: 50%;
+      align-self: stretch;
+      margin: auto 0;
+    }
+
+    .matter-indicator {
+      background-color: #acffb6;
+      align-self: end;
+      display: flex;
+      margin-top: 34px;
+      gap: 22px;
+      padding: 4px 15px;
+      font: 300 10px Poppins, sans-serif;
+    }
+
+    .matter-text {
+      margin: auto 0;
+    }
+
+    .matter-icon {
+      aspect-ratio: 1.42;
+      object-fit: contain;
+      object-position: center;
+      width: 34px;
+    }
+
+    .reports-container {
+      display: flex;
+      margin-top: 33px;
+      width: 100%;
+      flex-direction: column;
+      padding: 0 14px;
+      font: 10px Poppins, sans-serif;
+    }
+
+    .hourly-title {
+      font-weight: 300;
+      align-self: start;
+      margin-left: 26px;
+    }
+
+    .hourly-chart {
+      border-radius: 19px;
+      background-color: rgba(219, 255, 223, 0.5);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      display: flex;
+      margin-top: 9px;
+      align-items: start;
+      gap: 5px;
+      font-weight: 300;
+      white-space: nowrap;
+      padding: 100px 17px 6px 0;
+    }
+
+    .weekly-title {
+      font-weight: 300;
+      align-self: start;
+      margin: 20px 0 0 23px;
+    }
+
+    .weekly-chart {
+      border-radius: 19px;
+      background-color: rgba(219, 255, 223, 0.5);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      display: flex;
+      margin-top: 9px;
+      width: 100%;
+      flex-direction: column;
+      white-space: nowrap;
+      padding: 12px 12px 20px;
+    }
+
+    .chart-header {
+      align-self: center;
+      display: flex;
+      width: 100%;
+      max-width: 290px;
+      gap: 20px;
+      font-weight: 700;
+      justify-content: space-between;
+    }
+
+    .chart-content {
+      display: flex;
+      margin-top: 28px;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .days-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .day-row {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      margin-top: 21px;
+    }
+
+    .day-row:first-child {
+      margin-top: 0;
+    }
+
+    .day-name {
+      font-weight: 400;
+    }
+
+    .aqi-value {
+      font-weight: 300;
+    }
+
+    .status-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: 400;
+    }
+
+    .status-text {
+      margin-top: 24px;
+    }
+
+    .status-text:first-child {
+      margin-top: 0;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="aqi-activity-container">
+  <div class="header-wrapper">
+    <div class="nav-container">
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e50b35edc30b629f8ece9a2925e3f31b70dd95a804871057d64fd3ba64de88c?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529" alt="" class="back-icon" />
+      <div class="page-title">Home</div>
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/93993e8d041ced458e42220e88cf5374974a2e0c64f15e62f2d366935b57da96?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529" alt="User profile" class="profile-image" />
+    </div>
+    <div class="matter-indicator">
+      <div class="matter-text">Particulate Matter</div>
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3cb4a399d550af04d16960e6dfb82a85065821f8fede6e0d0c33ae10f9c6cebd?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529" alt="Particulate matter indicator" class="matter-icon" />
+    </div>
+  </div>
+
+  <div class="reports-container">
+    <div class="hourly-title">Hourly Report</div>
+    <div class="hourly-chart" role="group" aria-label="Hourly AQI measurements">
+      <div tabindex="0">1<br />am</div>
+      <div tabindex="0">2<br />am</div>
+      <div tabindex="0">3<br />am</div>
+      <div tabindex="0">4<br />am</div>
+      <div tabindex="0">5<br />am</div>
+      <div tabindex="0">6<br />am</div>
+      <div tabindex="0">7<br />am</div>
+      <div tabindex="0">8<br />am</div>
+      <div tabindex="0">9<br />am</div>
+      <div tabindex="0">10<br />am</div>
+      <div tabindex="0">11<br />am</div>
+      <div tabindex="0">12<br />am</div>
+      <div tabindex="0">1<br />pm</div>
+      <div tabindex="0">2<br />pm</div>
+      <div tabindex="0">3<br />pm</div>
+      <div tabindex="0">4<br />pm</div>
+    </div>
+
+    <div class="weekly-title">Weekly Report</div>
+    <div class="weekly-chart" role="table" aria-label="Weekly AQI report">
+      <div class="chart-header" role="row">
+        <div role="columnheader">Day</div>
+        <div role="columnheader">AQI</div>
+        <div role="columnheader">Status</div>
+      </div>
+      <div class="chart-content">
+        <div class="days-column">
+          <div class="day-row" role="row">
+            <div class="day-name" role="cell">Sunday</div>
+            <div class="aqi-value" role="cell">22</div>
+          </div>
+          <div class="day-row" role="row">
+            <div class="day-name" role="cell">Monday</div>
+            <div class="aqi-value" role="cell">10</div>
+          </div>
+          <div class="day-row" role="row">
+            <div class="day-name" role="cell">Tuesday</div>
+            <div class="aqi-value" role="cell">15</div>
+          </div>
+          <div class="day-row" role="row">
+            <div class="day-name" role="cell">Wednesday</div>
+            <div class="aqi-value" role="cell">15</div>
+          </div>
+          <div class="day-row" role="row">
+            <div class="day-name" role="cell">Thursday</div>
+            <div class="aqi-value" role="cell">13</div>
+          </div>
+          <div class="day-row" role="row">
+            <div class="day-name" role="cell">Friday</div>
+            <div class="aqi-value" role="cell">15</div>
+          </div>
+          <div class="day-row" role="row">
+            <div class="day-name" role="cell">Saturday</div>
+            <div class="aqi-value" role="cell">23</div>
+          </div>
+        </div>
+
+        <div class="status-column">
+          <div class="status-text" role="cell">Moderate</div>
+          <div class="status-text" role="cell">Good</div>
+          <div class="status-text" role="cell">Good</div>
+          <div class="status-text" role="cell">Good</div>
+          <div class="status-text" role="cell">Good</div>
+          <div class="status-text" role="cell">Good</div>
+          <div class="status-text" role="cell">Moderate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

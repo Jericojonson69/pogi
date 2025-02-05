@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 10px 15px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        /* Menu bar styling */
+    .menu-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+
+        
+        /* Dropdown Menu Styling */
+    .dropdown-menu {
+      display: none; /* Hidden by default */
+      position: absolute;
+      top: 60px; /* Adjust the position to appear below the menu bar */
+      left: 20px;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 1000;
+      width: 200px; /* Set a width for the dropdown */
+    }
+
+    .dropdown-item {
+      text-decoration: none;
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      color: #555;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+        .profile-icon img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        .notification {
+            background-color: #eaffea;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .time {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .content {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .read-more {
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+
+        <!-- Menu Bar -->
+    <div class="menu-bar">
+      <div class="menu-icon" id="menuIcon">&#9776;</div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+      <a href="recent.html" class="dropdown-item">AQI Recent Activity</a>
+      <a href="history.html" class="dropdown-item">History</a>
+      <a href="notification.html" class="dropdown-item">Notification</a>
+      <a href="settings.html" class="dropdown-item">Settings</a>
+    </div>
+        <h1>Notification</h1>
+    </div>
+
+    <div class="container">
+        <div class="notification">
+            <div class="time">Just now</div>
+            <div class="title">Warning!</div>
+            <div class="content">Particulate Matter (PM 2.5) reach a dangerous level.</div>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+
+        <div class="notification">
+            <div class="time">Just now</div>
+            <div class="title">Warning!</div>
+            <div class="content">Particulate Matter (PM 2.5) reach a dangerous level.</div>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+
+        <div class="notification">
+            <div class="time">Just now</div>
+            <div class="title">Warning!</div>
+            <div class="content">Particulate Matter (PM 2.5) reach a dangerous level.</div>
+            <a href="#" class="read-more">Read More</a>
+        </div>
+    </div>
+    <script>
+      // JavaScript to toggle the dropdown menu
+      const menuIcon = document.getElementById('menuIcon');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+  
+      menuIcon.addEventListener('click', () => {
+        dropdownMenu.style.display =
+          dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      });
+  
+      // Close the dropdown if clicked outside
+      document.addEventListener('click', (e) => {
+        if (!menuIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.style.display = 'none';
+        }
+      });
+    </script>
+</body>
+</html>

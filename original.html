@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <style>
+    /* General body styling */
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    /* Weather dashboard container */
+    .weather-dashboard {
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 20px;
+      position: relative; /* For menu positioning */
+    }
+
+    /* Menu bar styling */
+    .menu-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .profile-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #ccc;
+    }
+
+    /* Dropdown Menu Styling */
+    .dropdown-menu {
+      display: none; /* Hidden by default */
+      position: absolute;
+      top: 60px; /* Adjust the position to appear below the menu bar */
+      left: 20px;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 1000;
+      width: 200px; /* Set a width for the dropdown */
+    }
+
+    .dropdown-item {
+      text-decoration: none;
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      color: #555;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    /* Header styling */
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .location {
+      font-size: 16px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .temperature {
+      font-size: 64px;
+      font-weight: 700;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .weather-icon {
+      width: 60px;
+      height: auto;
+      margin-left: 10px;
+    }
+
+    .weather-status {
+      font-size: 18px;
+      font-weight: 500;
+      color: #777;
+    }
+    /* AQI section */
+     .aqi-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    /* Other sections (metrics and combined metrics) */
+    .metric, .combined-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e9ffe9;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .combined-metrics {
+      display: flex;
+      gap: 10px;
+    }
+
+    .combined-box {
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-dashboard">
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+      <div class="menu-icon" id="menuIcon">&#9776;</div>
+      <div class="menu-title">Home</div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+      <a href="recent.html" class="dropdown-item">AQI Recent Activity</a>
+      <a href="history.html" class="dropdown-item">History</a>
+      <a href="notification.html" class="dropdown-item">Notification</a>
+      <a href="settings.html" class="dropdown-item">Settings</a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="header">
+      <div class="location">Nasugbu, Campus</div>
+      <div class="temperature">
+        24°C
+        <img
+          src="./assets/rain-icon/cloudy.png"
+          class="weather-icon"
+          alt="Weather Icon"
+        />
+      </div>
+      <div class="weather-status">Moderate Rain</div>
+    </div>
+    <div class="aqi-section">
+      <img
+        src="./assets/aqiStatusImg/aqiGood.png"
+        alt="Meditation Icon"
+        style="width: 60px;"
+      />
+      <div>
+        <div class="aqi-value">22</div>
+        <div class="aqi-label">Good</div>
+      </div>
+    </div>
+
+    <!-- Metrics Section -->
+    <div class="metric">
+      <img
+        src="./assets/Icons/particulate.png"
+        class="metric-icon"
+        alt="PM2.5 Icon"
+      />
+      <div class="metric-text">Particulate Matters (2.5)</div>
+      <div class="metric-value">26</div>
+      <div class="metric-status" style="color: orange;">Fair</div>
+    </div>
+
+    <div class="metric">
+      <img
+        src="./assets/Icons/carbon.png"
+        class="metric-icon"
+        alt="CO Icon"
+      />
+      <div class="metric-text">Carbon Monoxide</div>
+      <div class="metric-value">2</div>
+      <div class="metric-status" style="color: green;">Excellent</div>
+    </div>
+
+    <!-- Combined Metrics Section -->
+    <div class="combined-metrics">
+      <div class="combined-box">
+        <img
+          src="./assets/Icons/airHumid.png"
+          class="combined-icon"
+          alt="Humidity Icon"
+        />
+        <div class="combined-value">88%</div>
+        <div class="combined-label">Air Humidity</div>
+      </div>
+      <div class="combined-box">
+        <img
+          src="./assets/Icons/airTemp.png"
+          class="combined-icon"
+          alt="Temperature Icon"
+        />
+        <div class="combined-value">27°C</div>
+        <div class="combined-label">Air Temperature</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to toggle the dropdown menu
+    const menuIcon = document.getElementById('menuIcon');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuIcon.addEventListener('click', () => {
+      dropdownMenu.style.display =
+        dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close the dropdown if clicked outside
+    document.addEventListener('click', (e) => {
+      if (!menuIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

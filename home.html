@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <style>
+    .weather-container {
+      background-color: rgba(255, 255, 255, 1);
+      display: flex;
+      max-width: 480px;
+      width: 100%;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: Poppins, sans-serif;
+      margin: 0 auto;
+      padding: 28px 13px 0;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: rgba(0, 0, 0, 1);
+      white-space: nowrap;
+      text-align: center;
+      letter-spacing: -0.4px;
+      justify-content: space-between;
+      font: 600 20px/1.4 Inter, sans-serif;
+    }
+    .logo {
+      aspect-ratio: 0.95;
+      object-fit: contain;
+      object-position: center;
+      width: 36px;
+      align-self: stretch;
+    }
+    .header-title {
+      align-self: stretch;
+      margin: auto 0;
+    }
+    .user-avatar {
+      aspect-ratio: 1;
+      object-fit: contain;
+      object-position: center;
+      width: 24px;
+      border-radius: 50%;
+      align-self: stretch;
+      margin: auto 0;
+    }
+    .location-text {
+      color: rgba(0, 0, 0, 1);
+      text-align: center;
+      align-self: start;
+      margin: 33px 0 0 42px;
+      font: 900 14px Inter, sans-serif;
+    }
+    .temperature-display {
+      align-self: center;
+      display: flex;
+      width: 100%;
+      max-width: 293px;
+      font-size: 80px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .temp-value {
+      align-self: start;
+      z-index: 10;
+      margin-right: -29px;
+      flex-grow: 1;
+      width: 165px;
+    }
+    .weather-icon {
+      aspect-ratio: 1.28;
+      object-fit: contain;
+      object-position: center;
+      width: 131px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      max-width: 100%;
+    }
+    .weather-condition {
+      color: rgba(41, 41, 41, 1);
+      font-size: 20px;
+      font-weight: 600;
+      align-self: start;
+      margin-left: 31px;
+    }
+    .chart-container {
+      display: flex;
+      width: 290px;
+      max-width: 100%;
+      height: 197px;
+      margin: 15px 0 0 11px;
+    }
+    .pm-container {
+      border-radius: 19px;
+      background-color: rgba(219, 255, 223, 0.5);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      display: flex;
+      margin-top: 13px;
+      align-items: flex-start;
+      gap: 20px;
+      justify-content: space-between;
+      padding: 0 14px 37px;
+    }
+    .pm-wrapper {
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      color: rgba(0, 0, 0, 1);
+    }
+    .pm-label {
+      background-blend-mode: normal;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      font-size: 10px;
+      font-weight: 300;
+      border: 1px solid rgba(0, 0, 0, 1);
+    }
+    .pm-value {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      align-self: end;
+      margin-top: 10px;
+    }
+    .pm-status {
+      color: rgba(237, 199, 0, 1);
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      align-self: end;
+      margin-top: 57px;
+    }
+    .co-container {
+      border-radius: 19px;
+      background-color: rgba(219, 255, 223, 0.5);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      display: flex;
+      margin-top: 8px;
+      width: 100%;
+      flex-direction: column;
+      padding: 0 14px 37px;
+    }
+    .co-label {
+      background-blend-mode: normal;
+      color: rgba(0, 0, 0, 1);
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      font-size: 10px;
+      font-weight: 300;
+      align-self: start;
+      border: 1px solid rgba(0, 0, 0, 1);
+    }
+    .co-stats {
+      align-self: end;
+      display: flex;
+      margin-top: 9px;
+      width: 163px;
+      max-width: 100%;
+      gap: 20px;
+      white-space: nowrap;
+      text-align: center;
+      justify-content: space-between;
+    }
+    .co-value {
+      color: rgba(0, 0, 0, 1);
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .co-status {
+      color: rgba(0, 203, 20, 1);
+      font-size: 16px;
+      font-weight: 400;
+      margin: auto 0;
+    }
+    .heat-container {
+      border-radius: 19px;
+      background-color: rgba(219, 255, 223, 0.5);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      display: flex;
+      margin-top: 8px;
+      width: 348px;
+      max-width: 100%;
+      gap: 20px;
+      color: rgba(0, 0, 0, 1);
+      text-align: center;
+      justify-content: space-between;
+      padding: 8px 46px 0 10px;
+    }
+    .heat-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    .heat-label {
+      background-blend-mode: normal;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      font-size: 10px;
+      font-weight: 300;
+      align-self: start;
+      border: 1px solid rgba(0, 0, 0, 1);
+    }
+    .humidity-wrapper {
+      display: flex;
+      margin-top: 21px;
+      padding-left: 25px;
+      flex-direction: column;
+      align-items: end;
+      font-size: 36px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .humidity-icon {
+      aspect-ratio: 1.04;
+      object-fit: contain;
+      object-position: center;
+      width: 50px;
+    }
+    .humidity-value {
+      margin-top: 9px;
+    }
+    .temp-wrapper {
+      align-self: end;
+      display: flex;
+      margin-top: 25px;
+      flex-direction: column;
+      font-size: 36px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .temp-icon {
+      display: flex;
+      width: 68px;
+      height: 77px;
+    }
+    .temp-reading {
+      margin-top: 9px;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-container">
+    <nav class="header-nav">
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e50b35edc30b629f8ece9a2925e3f31b70dd95a804871057d64fd3ba64de88c?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529" class="logo" alt="Weather App Logo" />
+      <div class="header-title">Home</div>
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/93993e8d041ced458e42220e88cf5374974a2e0c64f15e62f2d366935b57da96?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529" class="user-avatar" alt="User Profile" />
+    </nav>
+    <div class="location-text">Nasugbu, Campus</div>
+    <div class="temperature-display">
+      <div class="temp-value">24°C</div>
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/5c10f7d0ba679876580ad8dc5de8ecad9401eeed232b7fb588d99d5c896d0077?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529" class="weather-icon" alt="Current Weather Conditions" />
+    </div>
+    <div class="weather-condition">Moderate Rain</div>
+    <div class="chart-container"></div>
+    <div class="pm-container">
+      <div class="pm-wrapper">
+        <div class="pm-label">Particulate Matters (2.5):</div>
+        <div class="pm-value">26</div>
+      </div>
+      <div class="pm-status">Fair</div>
+    </div>
+    <div class="co-container">
+      <div class="co-label">Carbon Monoxide:</div>
+      <div class="co-stats">
+        <div class="co-value">2</div>
+        <div class="co-status">Excellent</div>
+      </div>
+    </div>
+    <div class="heat-container">
+      <div class="heat-wrapper">
+        <div class="heat-label">Air Heat Index:</div>
+        <div class="humidity-wrapper">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/299963d253df40422d395f1be91f7995457d067ca4da33aa069d56e0c0c432db?placeholderIfAbsent=true&apiKey=334079f60e1646998069a98f807fa529" class="humidity-icon" alt="Humidity Indicator" />
+          <div class="humidity-value">88%</div>
+        </div>
+      </div>
+      <div class="temp-wrapper">
+        <div class="temp-icon"></div>
+        <div class="temp-reading">27°C</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
